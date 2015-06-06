@@ -39,20 +39,6 @@ public class PromoListFragment extends Fragment implements LoaderManager.LoaderC
         // Required empty public constructor
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        for (int i = 0; i < 10; i++) {
-            ContentValues cv = new ContentValues();
-
-            cv.put(PromoItemTable.COLUMN_IMAGE, android.R.drawable.ic_menu_gallery);
-            cv.put(PromoItemTable.COLUMN_CAPTION, "Promo Item #" + i);
-            cv.put(PromoItemTable.COLUMN_DESCRIPTION, "This is the description");
-
-            getActivity().getContentResolver().insert(FreeContentProvider.CONTENT_URI_PROMOITEMS, cv);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,7 +81,7 @@ public class PromoListFragment extends Fragment implements LoaderManager.LoaderC
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
 
-            View v = LayoutInflater.from(context).inflate(R.layout.promo_item, parent, false);
+            View v = LayoutInflater.from(context).inflate(R.layout.promo_list_item, parent, false);
 
             ViewHolder holder = new ViewHolder();
             holder.image = (ImageView) v.findViewById(R.id.promo_item_image);

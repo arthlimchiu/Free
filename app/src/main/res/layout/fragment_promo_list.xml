@@ -1,14 +1,10 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.android.startupweekend.free.PromoListFragment">
-
-    <ListView
-        android:id="@+id/promo_listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"/>
-
-</FrameLayout>
+<ListView
+    android:id="@+id/promo_listView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@null"
+    android:dividerHeight="0dp"
+    android:paddingBottom="8dp"
+    tools:context="com.android.startupweekend.free.PromoListFragment"/>
