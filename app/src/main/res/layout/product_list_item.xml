@@ -22,7 +22,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/promo_item_image"
+                android:id="@+id/product_item_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
@@ -30,7 +30,7 @@
                 android:src="@android:drawable/ic_menu_gallery"/>
 
             <TextView
-                android:id="@+id/promo_item_caption"
+                android:id="@+id/product_item_caption"
                 style="?android:textAppearanceLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/promo_item_description"
+                android:id="@+id/product_item_description"
                 style="?android:textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

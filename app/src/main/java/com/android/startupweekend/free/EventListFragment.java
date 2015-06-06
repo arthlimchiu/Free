@@ -8,10 +8,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,21 +19,20 @@ import android.widget.TextView;
 import com.android.startupweekend.free.contentprovider.FreeContentProvider;
 import com.android.startupweekend.free.database.PromoItemTable;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PromoListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
+public class EventListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final String TAG = "PromoListFragment";
+    private static final String TAG = "EventListFragment";
 
-    private static final int PROMO_LIST_LOADER = 0;
+    private static final int EVENT_LIST_LOADER = 4;
 
     private ListView mListView;
-    private PromoListAdapter mAdapter;
+    private EventListAdapter mAdapter;
 
 
-    public PromoListFragment() {
+    public EventListFragment() {
         // Required empty public constructor
     }
 
@@ -41,11 +40,11 @@ public class PromoListFragment extends Fragment implements LoaderManager.LoaderC
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_promo_list, container, false);
+        View v = inflater.inflate(R.layout.fragment_event_list, container, false);
 
-        mListView = (ListView) v.findViewById(R.id.promo_listView);
+        mListView = (ListView) v.findViewById(R.id.event_listView);
 
-        getLoaderManager().initLoader(PROMO_LIST_LOADER, null, this);
+        getLoaderManager().initLoader(EVENT_LIST_LOADER, null, this);
 
         return v;
     }
@@ -61,7 +60,7 @@ public class PromoListFragment extends Fragment implements LoaderManager.LoaderC
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        mAdapter = new PromoListAdapter(getActivity(), data);
+        mAdapter = new EventListAdapter(getActivity(), data);
         mListView.setAdapter(mAdapter);
     }
 
@@ -70,23 +69,23 @@ public class PromoListFragment extends Fragment implements LoaderManager.LoaderC
         mListView.setAdapter(null);
     }
 
-    class PromoListAdapter extends CursorAdapter {
+    class EventListAdapter extends CursorAdapter {
 
-        public PromoListAdapter(Context context, Cursor cursor) {
+        public EventListAdapter(Context context, Cursor cursor) {
             super(context, cursor, 0);
         }
 
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
-
-            View v = LayoutInflater.from(context).inflate(R.layout.promo_list_item, parent, false);
+            View v = LayoutInflater.from(context).inflate(R.layout.event_list_item, parent, false);
 
             ViewHolder holder = new ViewHolder();
-            holder.image = (ImageView) v.findViewById(R.id.promo_item_image);
-            holder.caption = (TextView) v.findViewById(R.id.promo_item_caption);
-            holder.description = (TextView) v.findViewById(R.id.promo_item_description);
+            holder.image = (ImageView) v.findViewById(R.id.event_item_image);
+            holder.caption = (TextView) v.findViewById(R.id.event_item_caption);
+            holder.description = (TextView) v.findViewById(R.id.event_item_description);
 
             v.setTag(holder);
+
             return v;
         }
 
@@ -108,5 +107,6 @@ public class PromoListFragment extends Fragment implements LoaderManager.LoaderC
             TextView caption;
             TextView description;
         }
+
     }
 }

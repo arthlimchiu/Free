@@ -18,9 +18,42 @@
         </activity>
 
         <provider
-            android:authorities="com.android.startupweekend.free.contentprovider"
             android:name=".contentprovider.FreeContentProvider"
-            android:exported="false"/>
+            android:authorities="com.android.startupweekend.free.contentprovider"
+            android:exported="false" />
+
+        <activity
+            android:name=".WhatsNewActivity"
+            android:label="@string/title_activity_whats_new"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.startupweekend.free.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ProductsActivity"
+            android:label="@string/title_activity_products"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.startupweekend.free.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ServicesActivity"
+            android:label="@string/title_activity_services"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.startupweekend.free.MainActivity" />
+        </activity>
+        <activity
+            android:name=".EventsActivity"
+            android:label="@string/title_activity_events"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.startupweekend.free.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

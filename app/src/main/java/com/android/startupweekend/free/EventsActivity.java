@@ -19,7 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class EventsActivity extends ActionBarActivity {
 
     private Toolbar mToolbar;
 
@@ -34,21 +34,30 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_events);
 
         mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(mToolbar);
 
         mDrawerItems = getResources().getStringArray(R.array.drawer_items);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.activity_main_drawer_list);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.activity_events_drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.activity_events_drawer_list);
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_item, mDrawerItems));
-        mDrawerList.setItemChecked(0, true);
+        mDrawerList.setItemChecked(4, true);
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 1) {
+                if (position == 0) {
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }, 200);
+                } else if (position == 1) {
                     mHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -75,15 +84,8 @@ public class MainActivity extends ActionBarActivity {
                             finish();
                         }
                     }, 200);
-                } else if (position == 4) {
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent intent = new Intent(getBaseContext(), EventsActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }, 200);
+                } else if (position == 5) {
+
                 }
                 mDrawerLayout.closeDrawer(mDrawerList);
             }
@@ -104,21 +106,14 @@ public class MainActivity extends ActionBarActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.main_activity_fragment_container);
+        Fragment fragment = fm.findFragmentById(R.id.events_activity_fragment_container);
 
         if (fragment == null) {
             fragment = new PromoListFragment();
             fm.beginTransaction()
-                    .add(R.id.main_activity_fragment_container, fragment)
+                    .add(R.id.events_activity_fragment_container, fragment)
                     .commit();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     @Override
