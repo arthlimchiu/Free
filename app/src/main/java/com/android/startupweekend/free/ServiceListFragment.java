@@ -2,6 +2,7 @@ package com.android.startupweekend.free;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -55,13 +56,17 @@ public class ServiceListFragment extends Fragment implements LoaderManager.Loade
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PromoDetailsFragment fragment = PromoDetailsFragment.newInstance(id);
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        .replace(R.id.services_activity_fragment_container, fragment)
-                        .addToBackStack(null)
-                        .commit();
+//                PromoDetailsFragment fragment = PromoDetailsFragment.newInstance(id);
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+//                        .replace(R.id.services_activity_fragment_container, fragment)
+//                        .addToBackStack(null)
+//                        .commit();
+
+                Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
+                intent.putExtra(ServiceDetailActivity.SERVICE_ID, id);
+                startActivity(intent);
             }
         });
 

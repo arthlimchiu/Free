@@ -2,6 +2,7 @@ package com.android.startupweekend.free;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -54,13 +55,17 @@ public class EventListFragment extends Fragment implements LoaderManager.LoaderC
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PromoDetailsFragment fragment = PromoDetailsFragment.newInstance(id);
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        .replace(R.id.events_activity_fragment_container, fragment)
-                        .addToBackStack(null)
-                        .commit();
+//                PromoDetailsFragment fragment = PromoDetailsFragment.newInstance(id);
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+//                        .replace(R.id.events_activity_fragment_container, fragment)
+//                        .addToBackStack(null)
+//                        .commit();
+
+                Intent intent = new Intent(getActivity(), EventDetailActivity.class);
+                intent.putExtra(EventDetailActivity.EVENT_ID, id);
+                startActivity(intent);
             }
         });
 

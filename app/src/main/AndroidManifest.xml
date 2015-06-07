@@ -67,6 +67,38 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.startupweekend.free.MainActivity" />
         </activity>
+        <activity
+            android:name=".WhatsNewDetailActivity"
+            android:label="@string/title_activity_whats_new_detail"
+            android:parentActivityName=".WhatsNewActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.startupweekend.free.WhatsNewActivity" />
+        </activity>
+        <activity
+            android:name=".ProductDetailActivity"
+            android:label="@string/title_activity_product_detail"
+            android:parentActivityName=".ProductsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.startupweekend.free.ProductsActivity" />
+        </activity>
+        <activity
+            android:name=".ServiceDetailActivity"
+            android:label="@string/title_activity_service_detail"
+            android:parentActivityName=".ServicesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.startupweekend.free.ServicesActivity" />
+        </activity>
+        <activity
+            android:name=".EventDetailActivity"
+            android:label="@string/title_activity_event_detail"
+            android:parentActivityName=".EventsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.startupweekend.free.EventsActivity" />
+        </activity>
     </application>
 
 </manifest>
