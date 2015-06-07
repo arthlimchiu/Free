@@ -108,7 +108,7 @@ public class ProductsActivity extends ActionBarActivity {
         Fragment fragment = fm.findFragmentById(R.id.products_activity_fragment_container);
 
         if (fragment == null) {
-            fragment = new PromoListFragment();
+            fragment = new ProductListFragment();
             fm.beginTransaction()
                     .add(R.id.products_activity_fragment_container, fragment)
                     .commit();

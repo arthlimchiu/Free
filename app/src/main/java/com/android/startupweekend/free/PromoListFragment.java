@@ -15,9 +15,11 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.startupweekend.free.contentprovider.FreeContentProvider;
 import com.android.startupweekend.free.database.PromoItemTable;
+import com.gc.materialdesign.views.ButtonFlat;
 
 
 /**
@@ -37,6 +39,11 @@ public class PromoListFragment extends Fragment implements LoaderManager.LoaderC
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActivity().setTitle("Home");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,13 +92,14 @@ public class PromoListFragment extends Fragment implements LoaderManager.LoaderC
             holder.image = (ImageView) v.findViewById(R.id.promo_item_image);
             holder.caption = (TextView) v.findViewById(R.id.promo_item_caption);
             holder.description = (TextView) v.findViewById(R.id.promo_item_description);
+            holder.avail = (ButtonFlat) v.findViewById(R.id.promo_item_avail);
 
             v.setTag(holder);
             return v;
         }
 
         @Override
-        public void bindView(View view, Context context, Cursor cursor) {
+        public void bindView(View view, final Context context, final Cursor cursor) {
             ViewHolder holder = (ViewHolder) view.getTag();
 
             int image = cursor.getInt(cursor.getColumnIndex(PromoItemTable.COLUMN_IMAGE));
@@ -101,12 +109,29 @@ public class PromoListFragment extends Fragment implements LoaderManager.LoaderC
             holder.image.setImageResource(image);
             holder.caption.setText(caption);
             holder.description.setText(description);
+            holder.avail.setOnClickListener(new OnButtonClickListener(cursor.getInt(cursor.getColumnIndex(PromoItemTable.COLUMN_ID))));
+        }
+
+        class OnButtonClickListener implements View.OnClickListener {
+
+            private int id;
+
+            public OnButtonClickListener(int id) {
+                super();
+                this.id = id;
+            }
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Promo No. " + id, Toast.LENGTH_SHORT).show();
+            }
         }
 
         class ViewHolder {
             ImageView image;
             TextView caption;
             TextView description;
+            ButtonFlat avail;
         }
     }
 }

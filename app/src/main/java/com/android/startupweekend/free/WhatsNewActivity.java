@@ -110,7 +110,7 @@ public class WhatsNewActivity extends ActionBarActivity {
         Fragment fragment = fm.findFragmentById(R.id.whatsnew_activity_fragment_container);
 
         if (fragment == null) {
-            fragment = new PromoListFragment();
+            fragment = new WhatsNewListFragment();
             fm.beginTransaction()
                     .add(R.id.whatsnew_activity_fragment_container, fragment)
                     .commit();

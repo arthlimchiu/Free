@@ -24,10 +24,10 @@
             <ImageView
                 android:id="@+id/event_item_image"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_gravity="center_horizontal"
-                android:padding="16dp"
-                android:src="@android:drawable/ic_menu_gallery"/>
+                android:layout_height="180dp"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                android:layout_gravity="center_horizontal"/>
 
             <TextView
                 android:id="@+id/event_item_caption"
@@ -37,7 +37,6 @@
                 android:paddingTop="24dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:paddingBottom="16dp"
                 android:text="This is the caption."
                 android:textSize="16sp"
                 android:textStyle="bold"/>
@@ -51,10 +50,28 @@
                 android:paddingRight="16dp"
                 android:paddingBottom="16dp"
                 android:text="This is the description."
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+
+            <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <com.gc.materialdesign.views.ButtonFlat
+                android:id="@+id/event_item_avail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/ColorPrimary"
+                android:text="@string/avail"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
 
         </LinearLayout>
-
 
     </android.support.v7.widget.CardView>
 

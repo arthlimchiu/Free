@@ -36,6 +36,11 @@ public class WhatsNewListFragment extends Fragment implements LoaderManager.Load
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActivity().setTitle("What's New");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

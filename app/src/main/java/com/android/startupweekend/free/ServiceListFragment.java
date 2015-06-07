@@ -36,6 +36,12 @@ public class ServiceListFragment extends Fragment implements LoaderManager.Loade
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        getActivity().setTitle("Services");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +58,9 @@ public class ServiceListFragment extends Fragment implements LoaderManager.Loade
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String[] projection = new String[]{PromoItemTable.COLUMN_ID,
                 PromoItemTable.COLUMN_IMAGE, PromoItemTable.COLUMN_CAPTION, PromoItemTable.COLUMN_DESCRIPTION};
-        CursorLoader cursorLoader = new CursorLoader(getActivity(), FreeContentProvider.CONTENT_URI_PROMOITEMS, projection, null, null, null);
+        String selection = PromoItemTable.COLUMN_CATEGORY + "=?";
+        String[] selectionArgs = new String[]{"services"};
+        CursorLoader cursorLoader = new CursorLoader(getActivity(), FreeContentProvider.CONTENT_URI_PROMOITEMS, projection, selection, selectionArgs, null);
 
         return cursorLoader;
     }

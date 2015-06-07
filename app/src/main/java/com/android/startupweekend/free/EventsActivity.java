@@ -109,7 +109,7 @@ public class EventsActivity extends ActionBarActivity {
         Fragment fragment = fm.findFragmentById(R.id.events_activity_fragment_container);
 
         if (fragment == null) {
-            fragment = new PromoListFragment();
+            fragment = new EventListFragment();
             fm.beginTransaction()
                     .add(R.id.events_activity_fragment_container, fragment)
                     .commit();

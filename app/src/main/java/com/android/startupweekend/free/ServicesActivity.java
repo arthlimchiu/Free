@@ -107,7 +107,7 @@ public class ServicesActivity extends ActionBarActivity {
         Fragment fragment = fm.findFragmentById(R.id.services_activity_fragment_container);
 
         if (fragment == null) {
-            fragment = new PromoListFragment();
+            fragment = new ServiceListFragment();
             fm.beginTransaction()
                     .add(R.id.services_activity_fragment_container, fragment)
                     .commit();
