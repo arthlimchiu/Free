@@ -128,27 +128,31 @@ public class EventListFragment extends Fragment implements LoaderManager.LoaderC
             holder.image.setImageResource(image);
             holder.caption.setText(caption);
             holder.description.setText(description);
-            holder.avail.setOnClickListener(new OnButtonClickListener(cursor.getInt(cursor.getColumnIndex(PromoItemTable.COLUMN_ID))));
+            holder.avail.setOnClickListener(new OnButtonClickListener(cursor.getLong(cursor.getColumnIndex(PromoItemTable.COLUMN_ID))));
         }
 
         class OnButtonClickListener implements View.OnClickListener {
 
-            private int id;
+            private long id;
 
-            public OnButtonClickListener(int id) {
+            public OnButtonClickListener(long id) {
                 super();
                 this.id = id;
             }
 
             @Override
             public void onClick(View v) {
-                AvailedPromoFragment fragment = AvailedPromoFragment.newInstance(id);
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        .replace(R.id.events_activity_fragment_container, fragment)
-                        .addToBackStack(null)
-                        .commit();
+//                AvailedPromoFragment fragment = AvailedPromoFragment.newInstance(id);
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+//                        .replace(R.id.events_activity_fragment_container, fragment)
+//                        .addToBackStack(null)
+//                        .commit();
+                Intent intent = new Intent(getActivity(), EventDetailActivity.class);
+                intent.putExtra(EventDetailActivity.EVENT_ID, id);
+                intent.putExtra(EventDetailActivity.ACCESS_TYPE, EventDetailActivity.QUICK_AVAIL);
+                startActivity(intent);
             }
         }
 

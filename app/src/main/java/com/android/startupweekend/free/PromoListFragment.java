@@ -135,22 +135,27 @@ public class PromoListFragment extends Fragment implements LoaderManager.LoaderC
 
         class OnButtonClickListener implements View.OnClickListener {
 
-            private int id;
+            private long id;
 
-            public OnButtonClickListener(int id) {
+            public OnButtonClickListener(long id) {
                 super();
                 this.id = id;
             }
 
             @Override
             public void onClick(View v) {
-                AvailedPromoFragment fragment = AvailedPromoFragment.newInstance(id);
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        .replace(R.id.main_activity_fragment_container, fragment)
-                        .addToBackStack(null)
-                        .commit();
+//                AvailedPromoFragment fragment = AvailedPromoFragment.newInstance(id);
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+//                        .replace(R.id.main_activity_fragment_container, fragment)
+//                        .addToBackStack(null)
+//                        .commit();
+
+                Intent intent = new Intent(getActivity(), MainDetailActivity.class);
+                intent.putExtra(MainDetailActivity.PROMO_ID, id);
+                intent.putExtra(MainDetailActivity.ACCESS_TYPE, MainDetailActivity.QUICK_AVAIL);
+                startActivity(intent);
             }
         }
 

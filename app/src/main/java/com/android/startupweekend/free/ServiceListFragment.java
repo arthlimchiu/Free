@@ -127,27 +127,31 @@ public class ServiceListFragment extends Fragment implements LoaderManager.Loade
             holder.image.setImageResource(image);
             holder.caption.setText(caption);
             holder.description.setText(description);
-            holder.avail.setOnClickListener(new OnButtonClickListener(cursor.getInt(cursor.getColumnIndex(PromoItemTable.COLUMN_ID))));
+            holder.avail.setOnClickListener(new OnButtonClickListener(cursor.getLong(cursor.getColumnIndex(PromoItemTable.COLUMN_ID))));
         }
 
         class OnButtonClickListener implements View.OnClickListener {
 
-            private int id;
+            private long id;
 
-            public OnButtonClickListener(int id) {
+            public OnButtonClickListener(long id) {
                 super();
                 this.id = id;
             }
 
             @Override
             public void onClick(View v) {
-                AvailedPromoFragment fragment = AvailedPromoFragment.newInstance(id);
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        .replace(R.id.services_activity_fragment_container, fragment)
-                        .addToBackStack(null)
-                        .commit();
+//                AvailedPromoFragment fragment = AvailedPromoFragment.newInstance(id);
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+//                        .replace(R.id.services_activity_fragment_container, fragment)
+//                        .addToBackStack(null)
+//                        .commit();
+                Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
+                intent.putExtra(ServiceDetailActivity.SERVICE_ID, id);
+                intent.putExtra(ServiceDetailActivity.ACCESS_TYPE, ServiceDetailActivity.QUICK_AVAIL);
+                startActivity(intent);
             }
         }
 

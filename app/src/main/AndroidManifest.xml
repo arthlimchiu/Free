@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/libre"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -26,42 +26,27 @@
         <activity
             android:name=".WhatsNewActivity"
             android:label="@string/title_activity_whats_new"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.startupweekend.free.MainActivity" />
         </activity>
         <activity
             android:name=".ProductsActivity"
             android:label="@string/title_activity_products"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.startupweekend.free.MainActivity" />
         </activity>
         <activity
             android:name=".ServicesActivity"
             android:label="@string/title_activity_services"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.startupweekend.free.MainActivity" />
         </activity>
         <activity
             android:name=".EventsActivity"
             android:label="@string/title_activity_events"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.startupweekend.free.MainActivity" />
         </activity>
         <activity
             android:name=".MainDetailActivity"
             android:label="@string/title_activity_main_detail"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -70,6 +55,7 @@
         <activity
             android:name=".WhatsNewDetailActivity"
             android:label="@string/title_activity_whats_new_detail"
+            android:screenOrientation="portrait"
             android:parentActivityName=".WhatsNewActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -78,6 +64,7 @@
         <activity
             android:name=".ProductDetailActivity"
             android:label="@string/title_activity_product_detail"
+            android:screenOrientation="portrait"
             android:parentActivityName=".ProductsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -86,6 +73,7 @@
         <activity
             android:name=".ServiceDetailActivity"
             android:label="@string/title_activity_service_detail"
+            android:screenOrientation="portrait"
             android:parentActivityName=".ServicesActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -94,6 +82,7 @@
         <activity
             android:name=".EventDetailActivity"
             android:label="@string/title_activity_event_detail"
+            android:screenOrientation="portrait"
             android:parentActivityName=".EventsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

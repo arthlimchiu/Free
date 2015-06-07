@@ -57,6 +57,8 @@ public class AvailedPromoFragment extends Fragment {
 
         Bundle args = getArguments();
         id = args.getLong(AVAILED_PROMO_ID);
+
+        getActivity().setTitle("");
     }
 
     @Override
