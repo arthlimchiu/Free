@@ -115,8 +115,6 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.main_activity_fragment_container, fragment)
                     .commit();
         }
-
-        insertItems();
     }
 
     @Override

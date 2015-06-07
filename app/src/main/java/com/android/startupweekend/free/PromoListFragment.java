@@ -75,7 +75,9 @@ public class PromoListFragment extends Fragment implements LoaderManager.LoaderC
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String[] projection = new String[]{PromoItemTable.COLUMN_ID,
                 PromoItemTable.COLUMN_IMAGE, PromoItemTable.COLUMN_CAPTION, PromoItemTable.COLUMN_DESCRIPTION};
-        CursorLoader cursorLoader = new CursorLoader(getActivity(), FreeContentProvider.CONTENT_URI_PROMOITEMS, projection, null, null, null);
+        String selection = PromoItemTable.COLUMN_QUANTITY + ">?";
+        String[] selectionArgs = new String[]{"0"};
+        CursorLoader cursorLoader = new CursorLoader(getActivity(), FreeContentProvider.CONTENT_URI_PROMOITEMS, projection, selection, selectionArgs, "_id desc");
 
         return cursorLoader;
     }
@@ -137,7 +139,13 @@ public class PromoListFragment extends Fragment implements LoaderManager.LoaderC
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Promo No. " + id, Toast.LENGTH_SHORT).show();
+                AvailedPromoFragment fragment = AvailedPromoFragment.newInstance(id);
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .replace(R.id.main_activity_fragment_container, fragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         }
 

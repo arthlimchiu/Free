@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import com.android.startupweekend.free.contentprovider.FreeContentProvider;
 import com.android.startupweekend.free.database.PromoItemTable;
-import com.gc.materialdesign.views.ButtonFlat;
-import com.gc.materialdesign.views.ButtonRectangle;
 
 import java.util.Random;
 
@@ -23,33 +21,31 @@ import java.util.Random;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PromoDetailsFragment extends Fragment {
+public class AvailedPromoFragment extends Fragment {
 
-    private static final String TAG = "PromoDetailsFragment";
+    private static final String TAG = "AvailedPromoFragment";
 
-    public static final String PROMO_ID = "PROMO_ID";
+    private static final String AVAILED_PROMO_ID = "AVAILED_PROMO_ID";
 
     private ImageView mImageView;
     private TextView mCaption, mDescription, mQuantity, mRedeemCode;
-    private ButtonRectangle mAvail;
 
-
-    private long id, quantity;
+    private long id;
 
     private String[] characters = new String[]{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
             "Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
             "p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9"};
     private Random random = new Random();
 
-    public PromoDetailsFragment() {
+    public AvailedPromoFragment() {
         // Required empty public constructor
     }
 
-    public static PromoDetailsFragment newInstance(long id) {
+    public static AvailedPromoFragment newInstance(long id) {
         Bundle args = new Bundle();
-        args.putLong(PROMO_ID, id);
+        args.putLong(AVAILED_PROMO_ID, id);
 
-        PromoDetailsFragment fragment = new PromoDetailsFragment();
+        AvailedPromoFragment fragment = new AvailedPromoFragment();
         fragment.setArguments(args);
 
         return fragment;
@@ -60,42 +56,19 @@ public class PromoDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         Bundle args = getArguments();
-        id = args.getLong(PROMO_ID);
+        id = args.getLong(AVAILED_PROMO_ID);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_promo_details, container, false);
+        View v = inflater.inflate(R.layout.fragment_availed_promo, container, false);
 
-        mImageView = (ImageView) v.findViewById(R.id.promo_details_image);
-        mCaption = (TextView) v.findViewById(R.id.promo_details_caption);
-        mDescription = (TextView) v.findViewById(R.id.promo_details_description);
-        mQuantity = (TextView) v.findViewById(R.id.promo_details_quantity);
-        mRedeemCode = (TextView) v.findViewById(R.id.promo_details_redeem_code);
-        mAvail = (ButtonRectangle) v.findViewById(R.id.promo_details_avail_button);
-        mAvail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                quantity -= 1;
-                mQuantity.setText("Quantity: " + quantity);
-
-                ContentValues cv = new ContentValues();
-                cv.put(PromoItemTable.COLUMN_QUANTITY, quantity);
-                getActivity().getContentResolver().update(Uri.withAppendedPath(FreeContentProvider.CONTENT_URI_PROMOITEMS, String.valueOf(id)), cv, null, null);
-
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < 8; i++) {
-                    int n = random.nextInt(62);
-                    builder.append(characters[n]);
-                }
-
-                mRedeemCode.setText(builder.toString());
-                mAvail.setEnabled(false);
-
-            }
-        });
+        mImageView = (ImageView) v.findViewById(R.id.availed_promo_image);
+        mCaption = (TextView) v.findViewById(R.id.availed_promo_caption);
+        mDescription = (TextView) v.findViewById(R.id.availed_promo_description);
+        mQuantity = (TextView) v.findViewById(R.id.availed_promo_quantity);
+        mRedeemCode = (TextView) v.findViewById(R.id.availed_promo_redeem_code);
 
         return v;
     }
@@ -103,7 +76,9 @@ public class PromoDetailsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        String[] projection = new String[]{PromoItemTable.COLUMN_IMAGE, PromoItemTable.COLUMN_CAPTION, PromoItemTable.COLUMN_DESCRIPTION, PromoItemTable.COLUMN_QUANTITY};
+
+        String[] projection = new String[]{PromoItemTable.COLUMN_IMAGE, PromoItemTable.COLUMN_CAPTION, PromoItemTable.COLUMN_DESCRIPTION,
+                PromoItemTable.COLUMN_QUANTITY};
         Cursor cursor = getActivity().getContentResolver()
                 .query(Uri.withAppendedPath(FreeContentProvider.CONTENT_URI_PROMOITEMS, String.valueOf(id)), projection, null, null, null);
 
@@ -111,12 +86,25 @@ public class PromoDetailsFragment extends Fragment {
             int image = cursor.getInt(cursor.getColumnIndex(PromoItemTable.COLUMN_IMAGE));
             String caption = cursor.getString(cursor.getColumnIndex(PromoItemTable.COLUMN_CAPTION));
             String description = cursor.getString(cursor.getColumnIndex(PromoItemTable.COLUMN_DESCRIPTION));
-            quantity = cursor.getLong(cursor.getColumnIndex(PromoItemTable.COLUMN_QUANTITY));
+            long quantity = cursor.getLong(cursor.getColumnIndex(PromoItemTable.COLUMN_QUANTITY));
+            quantity -= 1;
 
             mImageView.setImageResource(image);
             mCaption.setText(caption);
             mDescription.setText(description);
             mQuantity.setText("Quantity: " + quantity);
+
+            ContentValues cv = new ContentValues();
+            cv.put(PromoItemTable.COLUMN_QUANTITY, quantity);
+            getActivity().getContentResolver().update(Uri.withAppendedPath(FreeContentProvider.CONTENT_URI_PROMOITEMS, String.valueOf(id)), cv, null, null);
+
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < 8; i++) {
+                int n = random.nextInt(62);
+                builder.append(characters[n]);
+            }
+
+            mRedeemCode.setText(builder.toString());
         }
     }
 }
