@@ -14,6 +14,7 @@ public class PromoItemTable {
     public static final String COLUMN_CAPTION = "caption";
     public static final String COLUMN_DESCRIPTION = "description";
     public static final String COLUMN_CATEGORY = "category";
+    public static final String COLUMN_QUANTITY = "quantity";
 
     // Database creation SQL statement
     private static final String DATABASE_CREATE = "create table "
@@ -23,7 +24,8 @@ public class PromoItemTable {
             + COLUMN_IMAGE + " integer, "
             + COLUMN_CAPTION + " text, "
             + COLUMN_DESCRIPTION + " text,"
-            + COLUMN_CATEGORY + " text"
+            + COLUMN_CATEGORY + " text, "
+            + COLUMN_QUANTITY + " integer"
             + ")";
 
     public static void onCreate(SQLiteDatabase database) {

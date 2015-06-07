@@ -5,12 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -51,6 +53,18 @@ public class PromoListFragment extends Fragment implements LoaderManager.LoaderC
         View v = inflater.inflate(R.layout.fragment_promo_list, container, false);
 
         mListView = (ListView) v.findViewById(R.id.promo_listView);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PromoDetailsFragment fragment = PromoDetailsFragment.newInstance(id);
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .replace(R.id.main_activity_fragment_container, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
         getLoaderManager().initLoader(PROMO_LIST_LOADER, null, this);
 
